@@ -1,0 +1,11 @@
+#################################### SMTP / Emailing ######################
+[smtp]
+enabled = true
+host = smtp.gmail.com:465
+from_address = *******h@gmail.com
+skip_verify = true
+from_name = Openshift-Grafana
+
+[emails]
+welcome_email_on_sign_up = false
+template_pattern = emails/*.html
