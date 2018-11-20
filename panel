@@ -1,0 +1,130 @@
+{
+  "aliasColors": {},
+  "bars": false,
+  "dashLength": 10,
+  "dashes": false,
+  "datasource": "prometheus",
+  "fill": 1,
+  "gridPos": {
+    "h": 7,
+    "w": 12,
+    "x": 12,
+    "y": 57
+  },
+  "id": 74,
+  "legend": {
+    "alignAsTable": true,
+    "avg": false,
+    "current": true,
+    "max": false,
+    "min": false,
+    "rightSide": true,
+    "show": true,
+    "sort": "current",
+    "sortDesc": true,
+    "total": false,
+    "values": true
+  },
+  "lines": true,
+  "linewidth": 1,
+  "links": [],
+  "nullPointMode": "null as zero",
+  "percentage": false,
+  "pointradius": 5,
+  "points": false,
+  "renderer": "flot",
+  "seriesOverrides": [],
+  "spaceLength": 10,
+  "stack": false,
+  "steppedLine": false,
+  "targets": [
+    {
+      "expr": "sum(kube_pod_status_phase) by (phase)",
+      "format": "time_series",
+      "intervalFactor": 2,
+      "legendFormat": "{{ phase }}",
+      "refId": "A",
+      "step": 240
+    }
+  ],
+  "thresholds": [
+    {
+      "value": 16,
+      "op": "gt",
+      "fill": true,
+      "line": true,
+      "colorMode": "critical"
+    }
+  ],
+  "timeFrom": null,
+  "timeShift": null,
+  "title": "Pod Phase across Cluster",
+  "tooltip": {
+    "shared": true,
+    "sort": 2,
+    "value_type": "individual"
+  },
+  "type": "graph",
+  "xaxis": {
+    "buckets": null,
+    "mode": "time",
+    "name": null,
+    "show": true,
+    "values": []
+  },
+  "yaxes": [
+    {
+      "format": "short",
+      "label": null,
+      "logBase": 1,
+      "max": null,
+      "min": null,
+      "show": true
+    },
+    {
+      "format": "short",
+      "label": null,
+      "logBase": 1,
+      "max": null,
+      "min": null,
+      "show": true
+    }
+  ],
+  "yaxis": {
+    "align": false,
+    "alignLevel": null
+  },
+  "alert": {
+    "conditions": [
+      {
+        "type": "query",
+        "query": {
+          "params": [
+            "A",
+            "5m",
+            "now"
+          ]
+        },
+        "reducer": {
+          "type": "avg",
+          "params": []
+        },
+        "evaluator": {
+          "type": "gt",
+          "params": [
+            16
+          ]
+        },
+        "operator": {
+          "type": "and"
+        }
+      }
+    ],
+    "noDataState": "no_data",
+    "executionErrorState": "alerting",
+    "frequency": "2s",
+    "handler": 1,
+    "notifications": [],
+    "name": "Pod Phase across Cluster alert"
+  }
+}
